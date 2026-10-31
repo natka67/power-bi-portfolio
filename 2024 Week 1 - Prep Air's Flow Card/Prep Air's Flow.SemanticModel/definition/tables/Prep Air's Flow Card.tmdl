@@ -1,0 +1,126 @@
+table 'Prep Air''s Flow Card'
+	lineageTag: 9a24baa7-30ab-4f12-8e00-7ed027a7266f
+
+	column 'Flight Number'
+		dataType: string
+		lineageTag: 7481be17-1635-454b-87a5-2a7516e5b4ea
+		summarizeBy: none
+		sourceColumn: Flight Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column From
+		dataType: string
+		lineageTag: 405422ce-caae-45fa-ba2c-89d915b27fdc
+		summarizeBy: none
+		sourceColumn: From
+
+		annotation SummarizationSetBy = Automatic
+
+	column To
+		dataType: string
+		lineageTag: 922bf1ea-6a90-4c6a-844d-5ec54b13647e
+		summarizeBy: none
+		sourceColumn: To
+
+		annotation SummarizationSetBy = Automatic
+
+	column Class
+		dataType: string
+		lineageTag: 65dee227-140f-4e10-bbcc-78cc754f0cf3
+		summarizeBy: none
+		sourceColumn: Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 5ca6904c-0e33-47cf-9fb5-be2becb7db4e
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Flow Card?'
+		dataType: string
+		lineageTag: 4c153ac5-f3e7-4125-a9c3-1644386f000c
+		summarizeBy: none
+		sourceColumn: Flow Card?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bags Checked'
+		dataType: int64
+		formatString: 0
+		lineageTag: a78cbf9d-e411-462d-aa2c-dd567e90e8f4
+		summarizeBy: sum
+		sourceColumn: Bags Checked
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Meal Type'
+		dataType: string
+		lineageTag: 6e77e0be-d64a-453c-b5db-9524eb6ed638
+		summarizeBy: none
+		sourceColumn: Meal Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Flight ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 97fc49e9-fb68-48b8-8e0c-b2d72d2449a2
+		summarizeBy: count
+		sourceColumn: Flight ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: d.mm.yyyy
+		lineageTag: 6e3871e1-8637-43e1-9d66-d369af350e2a
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 1975803b-db71-4b46-bec6-a7d04f74ff77
+			defaultHierarchy: LocalDateTable_129d5b0e-3a71-466d-af50-9034136c5099.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Route
+		dataType: string
+		lineageTag: 7dc3ea8f-a9d0-4d33-8cf2-87ca7e1f0dc9
+		summarizeBy: none
+		sourceColumn: Route
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Prep Air''s Flow Card' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\meenie\Desktop\Power BI Reports\2024 Week 1 - Prep Air's Flow Card\PD 2024 Wk 1 Input.csv"),[Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Flight Details", type text}, {"Flow Card?", type text}, {"Bags Checked", Int64.Type}, {"Meal Type", type text}}),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Changed Type", "Flight Details", Splitter.SplitTextByDelimiter("//", QuoteStyle.Csv), {"Date", "Flight Number", "From-To", "Class", "Price"}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Split Column by Delimiter", "From-To", "Route"),
+				    #"Split Column by Delimiter1" = Table.SplitColumn(#"Duplicated Column", "From-To", Splitter.SplitTextByDelimiter("-", QuoteStyle.Csv), {"From", "To"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Split Column by Delimiter1",".",",",Replacer.ReplaceText,{"Price"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Replaced Value",{{"Date", type date}, {"Price", type number}}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Changed Type1","1","Yes",Replacer.ReplaceText,{"Flow Card?"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","0","No",Replacer.ReplaceText,{"Flow Card?"}),
+				    #"Added Index" = Table.AddIndexColumn(#"Replaced Value2", "Flight ID", 0, 1, Int64.Type)
+				in
+				    #"Added Index"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

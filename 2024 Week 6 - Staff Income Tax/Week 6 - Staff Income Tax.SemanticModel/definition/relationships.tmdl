@@ -1,0 +1,29 @@
+relationship AutoDetected_0c93a10c-82b2-4f99-b62b-6a79b67683cf
+	fromColumn: 'Salaries Raw'.Month
+	toColumn: DIM_Month.Month
+
+relationship 0720c2c2-fc58-afec-e521-fb4ec21b975c
+	fromColumn: 'Salaries Raw'.StaffID
+	toColumn: 'Salaries Aggregated'.StaffID
+
+relationship 05511daa-4086-48e0-8780-83a50f1c81d7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_Staff.DateOfBirth
+	toColumn: LocalDateTable_80e9f817-ffe1-4903-a839-7cd3814e699b.Date
+
+relationship 3235ba63-e799-440f-80c0-45d99f00446b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_Staff.HireDate
+	toColumn: LocalDateTable_61d5357f-b024-48fe-8bae-31f1e05c2f08.Date
+
+relationship f94711cd-56ea-4070-afb1-9304c80a0e3c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_Month.Month
+	toColumn: LocalDateTable_99f6614d-f7b5-4ac6-a205-f445af1fb45e.Date
+
+relationship e4d2a782-7d82-a112-ddbb-771d36c3caf2
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Salaries Aggregated'.StaffID
+	toColumn: DIM_Staff.StaffID
+

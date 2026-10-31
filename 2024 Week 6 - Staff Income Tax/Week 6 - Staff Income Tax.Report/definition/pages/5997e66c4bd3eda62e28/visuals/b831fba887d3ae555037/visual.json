@@ -1,0 +1,54 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "b831fba887d3ae555037",
+  "position": {
+    "x": 0,
+    "y": 472.00546572534728,
+    "z": 2011,
+    "height": 76.49100432703257,
+    "width": 194.02596219539967,
+    "tabOrder": 2011
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "JobLevel"
+                }
+              },
+              "queryRef": "dim_staff.JobLevel",
+              "nativeQueryRef": "JobLevel",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

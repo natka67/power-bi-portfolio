@@ -1,0 +1,302 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "a2f96b3018ba21aae009",
+  "position": {
+    "x": 324.62035982691867,
+    "y": 50.372124800728763,
+    "z": 1,
+    "height": 958.93600546572532,
+    "width": 1578.3265770895011,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Salaries Raw"
+                    }
+                  },
+                  "Property": "Month"
+                }
+              },
+              "queryRef": "Salaries Raw.Month",
+              "nativeQueryRef": "Month",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Salaries Aggregated"
+                    }
+                  },
+                  "Property": "_20% Salary Value"
+                }
+              },
+              "queryRef": "Salaries Aggregated._20% Salary Value",
+              "nativeQueryRef": "_20% Salary Value"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Salaries Aggregated"
+                    }
+                  },
+                  "Property": "_40% Salary Value"
+                }
+              },
+              "queryRef": "Salaries Aggregated._40% Salary Value",
+              "nativeQueryRef": "_40% Salary Value"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Salaries Aggregated"
+                    }
+                  },
+                  "Property": "_45% Salary Value"
+                }
+              },
+              "queryRef": "Salaries Aggregated._45% Salary Value",
+              "nativeQueryRef": "_45% Salary Value"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Salaries Raw"
+                    }
+                  },
+                  "Property": "Salary running total in Month"
+                }
+              },
+              "queryRef": "Salaries Raw.Median of Salary running total in Month",
+              "nativeQueryRef": "Salary running total in Month"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Salaries Raw"
+                  }
+                },
+                "Property": "Month"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "seriesLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "lineStyles": [
+        {
+          "properties": {
+            "lineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'solid'"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "lineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'dashed'"
+                }
+              }
+            },
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Salaries Aggregated._20% Salary Value"
+          }
+        },
+        {
+          "properties": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            },
+            "lineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'dashed'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Salaries Aggregated._40% Salary Value"
+          }
+        },
+        {
+          "properties": {
+            "lineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'dashed'"
+                }
+              }
+            },
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Salaries Aggregated._45% Salary Value"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Running Total of Tax Paid with Tax Rate Threshold'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "cfa300d054c03309965b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Salaries Raw"
+              }
+            },
+            "Property": "Month"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "bffb2336a7099d677a07",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Salaries Aggregated"
+              }
+            },
+            "Property": "_20% Salary Value"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "54454b25154ca99ac685",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Salaries Aggregated"
+              }
+            },
+            "Property": "_40% Salary Value"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "600a82716e9379aed2a7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Salaries Aggregated"
+              }
+            },
+            "Property": "_45% Salary Value"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

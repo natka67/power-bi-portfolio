@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "b7ba6288c65eee11ea4c",
+  "position": {
+    "x": 1353.75,
+    "y": 132.5,
+    "z": 2014,
+    "height": 400,
+    "width": 547.5,
+    "tabOrder": 2014
+  },
+  "visual": {
+    "visualType": "pythonVisual",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "JobLevel"
+                }
+              },
+              "queryRef": "DIM_Staff.JobLevel",
+              "nativeQueryRef": "JobLevel"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Salaries Raw"
+                    }
+                  },
+                  "Property": "Salary"
+                }
+              },
+              "queryRef": "Sum(Salaries Raw.Salary)",
+              "nativeQueryRef": "Salary1",
+              "displayName": "Salary"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM_Staff"
+                  }
+                },
+                "Property": "JobLevel"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "script": [
+        {
+          "properties": {
+            "source": {
+              "expr": {
+                "Literal": {
+                  "Value": "'# dataset = pandas.DataFrame(JobLevel, Annual Salary)\n# dataset = dataset.drop_duplicates()\n\nimport matplotlib.pyplot as plt\n\ndf = dataset.copy()\nlevel_order = sorted(df[''JobLevel''].unique(), key=lambda x: int(x[1:]))\ndata = [df.loc[df[''JobLevel''] == lvl, ''Salary''].dropna() for lvl in level_order]\n\nbg, fg, mute = ''#FFFFFF'', ''#1F2A37'', ''#595959''\nbox_color, mean_color = ''#2E75B6'', ''#ED7D31''\n\nplt.rcParams[''font.family''] = ''Calibri''\nfig, ax = plt.subplots(figsize=(9, 5), dpi=120)\nfig.patch.set_facecolor(bg)\nax.set_facecolor(bg)\n\nbp = ax.boxplot(\n    data,\n    tick_labels=level_order,\n    showmeans=True,\n    meanprops=dict(marker=''D'', markerfacecolor=mean_color, markeredgecolor=mean_color, markersize=6),\n    medianprops=dict(color=fg, linewidth=2),\n    boxprops=dict(color=box_color, linewidth=1.5),\n    whiskerprops=dict(color=mute),\n    capprops=dict(color=mute),\n    flierprops=dict(marker=''o'', markerfacecolor=mute, markeredgecolor=''none'', markersize=4, alpha=0.5),\n    patch_artist=True\n)\nfor patch in bp[''boxes'']:\n    patch.set_facecolor(''#E8F0F9'')\n\nax.set_title(''Salary Distribution by Job Level'', fontsize=14, color=fg, pad=12)\nax.set_xlabel(''Job Level'', fontsize=12, color=mute, labelpad=8)\nax.set_ylabel(''Annual Salary (£)'', fontsize=12, color=mute, labelpad=8)\nax.tick_params(colors=mute, labelsize=11)\nfor spine in [''top'', ''right'']:\n    ax.spines[spine].set_visible(False)\nfor spine in [''left'', ''bottom'']:\n    ax.spines[spine].set_color(mute)\n\n# format y-axis ticks as £ with thousands separators\nax.yaxis.set_major_formatter(lambda v, pos: f\"£{v:,.0f}\")\n\n# --- one consolidated label per box (above the top whisker) instead of\n#     four separate floating numbers that collide on tight ranges ---\ny_top = max(s.max() for s in data if not s.empty)\nheadroom = y_top * 0.14  # reserve space above the tallest whisker for labels\n\nfor i, series in enumerate(data, start=1):\n    if series.empty:\n        continue\n    vmin, vmax = series.min(), series.max()\n    vmed = series.median()\n    vmean = series.mean()\n\n    label = (f\"Max  £{vmax:,.0f}\\n\"\n             f\"Med  £{vmed:,.0f}\\n\"\n             f\"Avg  £{vmean:,.0f}\\n\"\n             f\"Min  £{vmin:,.0f}\")\n\n    ax.annotate(label, (i, vmax), xytext=(0, 10), textcoords=''offset points'',\n                fontsize=11, color=fg, ha=''center'', va=''bottom'', linespacing=1.6,\n                bbox=dict(boxstyle=''round,pad=0.35'', facecolor=''#F5F7F9'', edgecolor=mute, linewidth=0.6))\n\nax.set_ylim(top=y_top + headroom)\n\nax.plot([], [], color=fg, linewidth=2, label=''Median'')\nax.plot([], [], marker=''D'', color=mean_color, linestyle=''None'', markersize=6, label=''Mean'')\nax.plot([], [], color=mute, linewidth=1, label=''Min / Max'')\nax.legend(loc=''upper left'', frameon=False, fontsize=11, labelcolor=mute)\nax.margins(x=0.06)\n\nplt.tight_layout()\nplt.show()\n'"
+                }
+              }
+            },
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Python'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,25 @@
+table 'DIM_Meal Type'
+	lineageTag: 5c288609-ffca-476f-9075-ea56f0a7f553
+
+	column 'Meal Type'
+		dataType: string
+		lineageTag: bb7f2991-7541-4da8-8ec5-f8f59d4dce37
+		summarizeBy: none
+		sourceColumn: Meal Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DIM_Meal Type' = m
+		mode: import
+		source =
+				let
+				    Source = #"Prep Air's Flow Card",
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Meal Type"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "5009a5f2b4a7366aa5c1",
+  "position": {
+    "x": 0,
+    "y": 274.28571428571428,
+    "z": 7000,
+    "height": 80,
+    "width": 227.14285714285717,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Prep Air's Flow Card"
+                    }
+                  },
+                  "Property": "Meal Type"
+                }
+              },
+              "queryRef": "Prep Air's Flow Card.Meal Type",
+              "nativeQueryRef": "Meal Type",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

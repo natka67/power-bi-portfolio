@@ -1,0 +1,110 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "ecfbac4bda05a8a05000",
+  "position": {
+    "x": 212.68230471418812,
+    "y": 132.46003188339785,
+    "z": 1000,
+    "height": 400,
+    "width": 550,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Salaries Aggregated"
+                    }
+                  },
+                  "Property": "_Maximum Tax Rate"
+                }
+              },
+              "queryRef": "Salaries Aggregated._Maximum Tax Rate",
+              "nativeQueryRef": "_Maximum Tax Rate",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "JobLevel"
+                }
+              },
+              "queryRef": "dim_staff.JobLevel",
+              "nativeQueryRef": "JobLevel"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Salaries Aggregated"
+                        }
+                      },
+                      "Property": "StaffID"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "CountNonNull(Salaries Aggregated.StaffID)",
+              "nativeQueryRef": "Count of StaffID"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Salaries Aggregated"
+                  }
+                },
+                "Property": "_Maximum Tax Rate"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM_Staff"
+                  }
+                },
+                "Property": "JobLevel"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

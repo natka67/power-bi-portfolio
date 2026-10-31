@@ -1,0 +1,130 @@
+table 'Salaries Aggregated'
+	lineageTag: 64efd849-a0d0-4b75-a31a-567aab1ba41e
+
+	measure '_20% Salary Value' = 12570
+		formatString: 0
+		lineageTag: c7e213e1-ad3b-4313-968a-80d99391e24d
+
+	measure '_40% Salary Value' = 50270
+		formatString: 0
+		lineageTag: 6c56a552-5fb0-408e-8c57-80576606c195
+
+	measure '_45% Salary Value' = 125140
+		formatString: 0
+		lineageTag: cb6c7a00-df71-4f1f-bf49-cdccd31545a0
+
+	column StaffID
+		dataType: string
+		lineageTag: 202d97b3-7e17-42ba-ac6e-067b6064e756
+		summarizeBy: none
+		sourceColumn: StaffID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Annual Salary'
+		dataType: double
+		lineageTag: ae3bfa8d-82d8-4680-9273-1f8786b1c17b
+		summarizeBy: none
+		sourceColumn: Annual Salary
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Maximum Monthly Salary'
+		dataType: double
+		lineageTag: d917b52e-4fc9-4709-bbfb-17b4655e150a
+		summarizeBy: none
+		sourceColumn: Maximum Monthly Salary
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Minimum Monthly Salary'
+		dataType: double
+		lineageTag: 50d6c9f6-3d07-4373-89f6-5049ad4babb1
+		summarizeBy: none
+		sourceColumn: Minimum Monthly Salary
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Average Monthly Salary'
+		dataType: double
+		lineageTag: de155725-ce50-465e-b3a4-9e5a92176cac
+		summarizeBy: none
+		sourceColumn: Average Monthly Salary
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Median Monthly Salary'
+		dataType: double
+		lineageTag: 5079eb26-ab24-4425-b3a9-909d7e4ea001
+		summarizeBy: none
+		sourceColumn: Median Monthly Salary
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '_Maximum Tax Rate' = convert('Salaries Aggregated'[_Maximum Tax Rate as Number]*100,STRING) & "% rate" --switch( TRUE(), [Annual Salary] <= 12570, "0% rate", [Annual Salary] <= 50270, "20% rate", [Annual Salary] <= 125140, "40% rate", "45% rate")
+		lineageTag: a9dd4239-c618-4de0-8519-0d92f5ab0065
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_Maximum Tax Rate as Number' = switch( TRUE(), [Annual Salary] <= [_20% Salary Value], 0, [Annual Salary] <= [_40% Salary Value], 0.2, [Annual Salary] <= [_45% Salary Value], 0.4, 0.45)
+		lineageTag: ef6c3a6d-3029-46b3-8db8-71297235e779
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '_20% Tax Paid' = IF('Salaries Aggregated'[_Maximum Tax Rate as Number]>0, 0.2*[Annual Salary], 0)
+		lineageTag: ebc8c139-0071-4481-9253-f4c4ef6d6cd4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '_40% Tax Paid' = if('Salaries Aggregated'[_Maximum Tax Rate as Number] >0.2, 0.4*([Annual Salary] - [_20% Salary Value]),0)
+		lineageTag: 39ba0dbe-fffb-4883-9082-64c97e351dac
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '_45% Tax Paid' = if('Salaries Aggregated'[_Maximum Tax Rate as Number] >0.4, 0.45*([Annual Salary] - ([_20% Salary Value]+[_40% Salary Value])),0)
+		formatString: 0
+		lineageTag: e91aa5cf-a320-4b75-a58d-9321454dc338
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '_Annual Tax Paid' = 'Salaries Aggregated'[_20% Tax Paid]+ 'Salaries Aggregated'[_40% Tax Paid]+'Salaries Aggregated'[_45% Tax Paid]
+		lineageTag: 65195a5c-8a7f-465e-8ac2-58c5cdce8c90
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Salaries Aggregated' = m
+		mode: import
+		source =
+				let
+				    #"Grouped Rows" = Table.Group(#"Salaries Raw", {"StaffID"}, {{"Annual Salary", each List.Sum([Salary]), type nullable number}, {"Maximum Monthly Salary", each List.Max([Salary]), type nullable number}, {"Minimum Monthly Salary", each List.Min([Salary]), type nullable number}, {"Average Monthly Salary", each List.Average([Salary]), type nullable number}, {"Median Monthly Salary", each List.Median([Salary]), type nullable number}})
+				in
+				    #"Grouped Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

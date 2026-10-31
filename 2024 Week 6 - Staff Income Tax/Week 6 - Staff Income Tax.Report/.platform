@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Week 6 - Staff Income Tax"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "291f795d-1e93-47cb-813a-4ae007fe904f"
+  }
+}

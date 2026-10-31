@@ -1,0 +1,27 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pl-PL
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Prep Air's Flow Card","DIM_Date","DIM_Class","DIM_To","DIM_From","DIM_Meal Type"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'Prep Air''s Flow Card'
+ref table DateTableTemplate_4ac2d2e9-2aea-4094-b8a7-c5be3b0f8a8b
+ref table DIM_Date
+ref table LocalDateTable_d8d8a71d-ff70-4f2c-929e-56f2267fd612
+ref table DIM_Class
+ref table DIM_To
+ref table DIM_From
+ref table 'DIM_Meal Type'
+ref table LocalDateTable_129d5b0e-3a71-466d-af50-9034136c5099
+
+ref cultureInfo en-US
+

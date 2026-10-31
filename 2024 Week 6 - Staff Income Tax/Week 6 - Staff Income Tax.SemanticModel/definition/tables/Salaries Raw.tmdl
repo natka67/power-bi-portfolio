@@ -1,0 +1,71 @@
+table 'Salaries Raw'
+	lineageTag: d174fba5-3b82-4547-90ea-1b4829eab206
+
+	measure 'Salary running total in Month' =
+			
+			CALCULATE(
+				SUM('Salaries Raw'[Salary]),
+				FILTER(
+					ALLSELECTED('Salaries Raw'[Month]),
+					ISONORAFTER('Salaries Raw'[Month], MAX('Salaries Raw'[Month]), DESC)
+				)
+			)
+		lineageTag: f1c309b7-79a4-49cf-ac15-44441a49a9f5
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "RunningTotal"
+				}
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column StaffID
+		dataType: string
+		lineageTag: faa3651e-a173-4e4c-bb52-bed9ada6f7c2
+		summarizeBy: none
+		sourceColumn: StaffID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 75a36077-8038-46c2-9ee9-6224769ef52b
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Salary
+		dataType: double
+		lineageTag: f84f7b95-befd-4f85-8ca2-999cb1ae4bc9
+		summarizeBy: sum
+		sourceColumn: Salary
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Salaries Raw' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\meenie\Desktop\Power BI Reports\2024 Week 6 - Staff Income Tax\PD 2024 Wk 6 Input.csv"),[Delimiter=",", Columns=13, Encoding=1250, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Unpivoted Other Columns" = Table.UnpivotOtherColumns(#"Promoted Headers", {"StaffID"}, "Month", "Salary"),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Unpivoted Other Columns",{{"Salary", type number}}),
+				    #"Added Prefix" = Table.TransformColumns(#"Changed Type", {{"Month", each "1/" & _, type text}}),
+				    #"Added Suffix" = Table.TransformColumns(#"Added Prefix", {{"Month", each _ & "/2024", type text}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Suffix",{{"Month", type date}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

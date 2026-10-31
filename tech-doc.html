@@ -1,0 +1,412 @@
+<title>Power BI Reports — Technical Documentation</title>
+<style>
+:root{
+  /* layout: single-column executive brief, generous whitespace, numbered sections as running spine */
+  --bg:#ffffff; --surface:#f5f7f9; --border:#dde3e8;
+  --fg:#1f2a37; --fg-mute:#59636e; --accent:#2e75b6; --accent-soft:#e8f0f9;
+  --font-display:'Carlito',Calibri,'Segoe UI',sans-serif;
+  --font-body:'Carlito',Calibri,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono','Consolas',monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15191d; --surface:#1d2227; --border:#2b3238;
+    --fg:#e8ecef; --fg-mute:#9aa5ad; --accent:#6ba6e0; --accent-soft:#1f2c3a;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15191d; --surface:#1d2227; --border:#2b3238;
+  --fg:#e8ecef; --fg-mute:#9aa5ad; --accent:#6ba6e0; --accent-soft:#1f2c3a;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);line-height:1.55;padding:0 16px;padding-block:48px}
+.page{max-width:760px;margin:0 auto}
+
+.toc{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 40px;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:13px}
+.toc a{color:var(--accent);text-decoration:none;font-weight:600}
+.toc a:hover{text-decoration:underline}
+.toc .sep{color:var(--fg-mute)}
+
+.proj-divider{display:flex;align-items:center;gap:14px;margin:56px 0 0}
+.proj-divider span{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-mute);white-space:nowrap}
+.proj-divider::after{content:"";flex:1;border-top:1px solid var(--border)}
+
+header.doc-head{border-bottom:2px solid var(--fg);padding-bottom:20px;margin:20px 0 36px}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-mute);font-weight:700}
+h1{font-family:var(--font-display);font-size:30px;font-weight:700;margin:6px 0 10px;text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:13px;color:var(--fg-mute)}
+.meta b{color:var(--fg);font-weight:600}
+
+section{margin-bottom:38px}
+.sec-head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+.sec-num{font-family:var(--font-mono);font-size:13px;color:var(--accent);font-weight:700}
+h2{font-family:var(--font-display);font-size:19px;font-weight:700;margin:0}
+h3.sub{font-family:var(--font-display);font-size:14px;font-weight:700;margin:22px 0 8px}
+p{margin:0 0 10px;max-width:66ch}
+.lede{color:var(--fg-mute);font-size:15px}
+.stat{color:var(--fg);font-weight:700}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:12px 0}
+th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--fg-mute);border-bottom:1px solid var(--fg);padding:6px 10px 6px 0;font-weight:700}
+td{padding:7px 10px 7px 0;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.mono,.mono{font-family:var(--font-mono);font-size:12.5px}
+td.fit,th.fit{white-space:nowrap}
+
+ul.clean{margin:0;padding-left:18px}
+ul.clean li{margin-bottom:5px}
+
+.flow{display:flex;flex-direction:column;gap:0;margin:12px 0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.flow-step{display:flex;gap:12px;padding:10px 14px;background:var(--surface);border-bottom:1px solid var(--border);font-size:13px}
+.flow-step:last-child{border-bottom:none}
+.flow-step b{flex:0 0 auto;min-width:118px;color:var(--accent)}
+.flow-step span{color:var(--fg)}
+
+details{margin:10px 0;border:1px solid var(--border);border-radius:6px;background:var(--surface)}
+details summary{cursor:pointer;padding:8px 14px;font-size:12.5px;font-weight:700;color:var(--accent);list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"▸ ";font-size:11px}
+details[open] summary::before{content:"▾ "}
+details pre{margin:0;border:none;border-top:1px solid var(--border);border-radius:0}
+
+pre{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:12px 14px;overflow-x:auto;font-family:var(--font-mono);font-size:12px;line-height:1.6;margin:10px 0}
+code{font-family:var(--font-mono);background:var(--surface);padding:1px 5px;border-radius:3px;font-size:.9em}
+
+figure{margin:14px 0}
+figure img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+figcaption{font-size:12px;color:var(--fg-mute);margin-top:6px}
+
+.swatch-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.swatch{display:flex;align-items:center;gap:7px;border:1px solid var(--border);border-radius:5px;padding:5px 9px;font-size:12px}
+.swatch .dot{width:13px;height:13px;border-radius:50%;flex:none;border:1px solid rgba(0,0,0,.08)}
+
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--accent-soft);color:var(--accent)}
+footer{border-top:1px solid var(--border);padding-top:16px;margin-top:40px;font-size:12px;color:var(--fg-mute);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+</style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap">
+
+<div class="page">
+
+<nav class="toc">
+  <a href="#air-flights">Air Flights Analytics</a>
+  <span class="sep">/</span>
+  <a href="#staff-income-tax">Staff Income Tax</a>
+</nav>
+
+<div class="proj-divider" id="air-flights"><span>Project 01</span></div>
+
+<header class="doc-head">
+  <div class="eyebrow">Technical Documentation</div>
+  <h1>Air Flights Analytics</h1>
+  <div class="meta">
+    <span><b>Author</b> Nat Adamczyk</span>
+    <span><b>Tool</b> Power BI Desktop</span>
+    <span><b>Status</b> v1.0</span>
+    <span><b>Scope</b> Prep Air · Flow Card, 2024 Wk 1</span>
+  </div>
+</header>
+
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>Summary</h2></div>
+  <p>Purchase-level flight report built on a single week of Prep Air booking data — <span class="stat">3,778</span> purchases worth <span class="stat">$4.13M</span> in revenue. The model is a star schema (one fact, five dimensions) covering <span class="stat">4</span> routes; the report surfaces revenue and basket mix by class, meal type, route and time.</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>Source</h2></div>
+  <table>
+    <tr><th>Table</th><th>File</th><th>Format</th><th class="fit">Rows</th><th class="fit">Columns</th><th>Description</th></tr>
+    <tr>
+      <td class="mono">PD 2024 Wk 1 Input</td>
+      <td class="mono">PD 2024 Wk 1 Input.csv</td>
+      <td>CSV, UTF-8</td>
+      <td class="fit mono">3,778</td>
+      <td class="fit mono">4 raw</td>
+      <td>Weekly flight-purchase extract. One composite column, <code>Flight Details</code>, packs five values delimited <code>//</code> and <code>-</code>: <span class="mono">Date // Flight Number // From-To // Class // Price</span> — unpacked in transformation.</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">03</span><h2>Transformations</h2></div>
+  <p class="lede">Power Query, five steps, no manual data entry.</p>
+  <div class="flow">
+    <div class="flow-step"><b>1. Promote headers</b><span>First row set as column names.</span></div>
+    <div class="flow-step"><b>2. Type raw columns</b><span><code>Flow Card?</code> and <code>Bags Checked</code> → Int64; <code>Meal Type</code> → text.</span></div>
+    <div class="flow-step"><b>3. Split composite fields</b><span><code>Flight Details</code> split on <code>//</code> into 5 columns, then <code>From-To</code> split on <code>-</code> into <code>From</code> / <code>To</code>.</span></div>
+    <div class="flow-step"><b>4. Normalize decimals</b><span>Replace <code>.</code> → <code>,</code> in <code>Price</code> — source uses European-style decimals pre-cast.</span></div>
+    <div class="flow-step"><b>5. Final typing</b><span><code>Date</code> → date, <code>Price</code> → decimal number.</span></div>
+  </div>
+
+  <details>
+    <summary>Show M code</summary>
+    <pre><code>let
+    Source = Csv.Document(File.Contents("PD 2024 Wk 1 Input.csv"),
+        [Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",
+        {{"Flight Details", type text}, {"Flow Card?", Int64.Type},
+         {"Bags Checked", Int64.Type}, {"Meal Type", type text}}),
+    #"Split Column by Delimiter" = Table.SplitColumn(#"Changed Type", "Flight Details",
+        Splitter.SplitTextByDelimiter("//", QuoteStyle.Csv),
+        {"Date", "Flight Number", "From-To", "Class", "Price"}),
+    #"Split Column by Delimiter1" = Table.SplitColumn(#"Split Column by Delimiter", "From-To",
+        Splitter.SplitTextByDelimiter("-", QuoteStyle.Csv), {"From", "To"}),
+    #"Replaced Value" = Table.ReplaceValue(#"Split Column by Delimiter1", ".", ",",
+        Replacer.ReplaceText, {"Price"}),
+    #"Changed Type1" = Table.TransformColumnTypes(#"Replaced Value",
+        {{"Date", type date}, {"Price", type number}})
+in
+    #"Changed Type1"</code></pre>
+  </details>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">04</span><h2>Data model</h2></div>
+  <p class="lede">Star schema — one fact table, five single-direction dimensions, each a deduplicated reference built from the fact itself.</p>
+  <figure>
+    <img src="images/model.png" alt="Power BI model view showing fact table Prep Air's Flow Card related one-to-many to five dimension tables">
+    <figcaption>Model view — fact table center, dimensions on outer relationships (1:*).</figcaption>
+  </figure>
+  <table>
+    <tr><th>Fact</th><th class="fit">Join key</th><th></th><th>Dimension</th><th class="fit">Dim key</th><th class="fit">Cardinality</th></tr>
+    <tr><td class="mono">Prep Air's Flow Card</td><td class="fit mono">Date</td><td class="fit">→</td><td class="mono">DIM_Date</td><td class="fit mono">Date</td><td class="fit">1:*</td></tr>
+    <tr><td class="mono">Prep Air's Flow Card</td><td class="fit mono">Class</td><td class="fit">→</td><td class="mono">DIM_Class</td><td class="fit mono">Class</td><td class="fit">1:*</td></tr>
+    <tr><td class="mono">Prep Air's Flow Card</td><td class="fit mono">Meal Type</td><td class="fit">→</td><td class="mono">DIM_Meal Type</td><td class="fit mono">Meal Type</td><td class="fit">1:*</td></tr>
+    <tr><td class="mono">Prep Air's Flow Card</td><td class="fit mono">From</td><td class="fit">→</td><td class="mono">DIM_From</td><td class="fit mono">From</td><td class="fit">1:*</td></tr>
+    <tr><td class="mono">Prep Air's Flow Card</td><td class="fit mono">To</td><td class="fit">→</td><td class="mono">DIM_To</td><td class="fit mono">To</td><td class="fit">1:*</td></tr>
+  </table>
+  <p style="font-size:13px" class="lede">Every dimension is keyed on the same column it joins (degenerate dimensions extracted from the fact), so each relationship is a plain single-column, single-direction 1:* join — no surrogate or composite keys in this model.</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">05</span><h2>Report</h2></div>
+  <p class="lede">Single page, six slicers, five visuals, two KPI cards.</p>
+  <figure>
+    <img src="images/report.png" alt="Air Flights Analytics report page with slicers, KPI cards, pie and bar charts, a detail table, and a route map">
+    <figcaption>Report canvas — filter rail left, KPIs top right, detail table and map below.</figcaption>
+  </figure>
+  <table>
+    <tr><th>Visual</th><th>Measure</th><th>What it answers</th></tr>
+    <tr><td>Pie — Flow Card split</td><td>Sum of Price</td><td>How much revenue comes from Flow Card members vs. non‑members.</td></tr>
+    <tr><td>Bar — by Class</td><td>Sum of Price</td><td>Which cabin class generates the most revenue in the week.</td></tr>
+    <tr><td>Bar — by Meal Type</td><td>Count of Purchases</td><td>Which meal option is most frequently selected at booking.</td></tr>
+    <tr><td>Column — by Year/Qtr/Month</td><td>Sum of Price</td><td>How revenue is distributed across the calendar drill-down (year → month).</td></tr>
+    <tr><td>Map — by From/To</td><td>Sum of Price</td><td>Which routes are the highest-earning, viewed geographically.</td></tr>
+    <tr><td>Detail table</td><td>Row-level transaction grain</td><td>Lets a viewer audit or drill into any single purchase behind the aggregates above.</td></tr>
+  </table>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">06</span><h2>Visual design</h2></div>
+  <p class="lede">Custom theme — <code>Clear Data Analytics.json</code> — Calibri throughout, navy/grey corporate palette.</p>
+  <div class="swatch-row">
+    <div class="swatch"><span class="dot" style="background:#2E75B6"></span>#2E75B6</div>
+    <div class="swatch"><span class="dot" style="background:#548235"></span>#548235</div>
+    <div class="swatch"><span class="dot" style="background:#ED7D31"></span>#ED7D31</div>
+    <div class="swatch"><span class="dot" style="background:#BF8F00"></span>#BF8F00</div>
+    <div class="swatch"><span class="dot" style="background:#C00000"></span>#C00000</div>
+    <div class="swatch"><span class="dot" style="background:#808080"></span>#808080</div>
+  </div>
+</section>
+
+<div class="proj-divider" id="staff-income-tax"><span>Project 02</span></div>
+
+<header class="doc-head">
+  <div class="eyebrow">Technical Documentation</div>
+  <h1>Staff Income Tax</h1>
+  <div class="meta">
+    <span><b>Author</b> Nat Adamczyk</span>
+    <span><b>Tool</b> Power BI Desktop</span>
+    <span><b>Status</b> v1.0</span>
+    <span><b>Scope</b> Workforce payroll & tax banding, 2024 snapshot</span>
+  </div>
+</header>
+
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>Summary</h2></div>
+  <p>Workforce income-tax report covering <span class="stat">999</span> employees and <span class="stat">£14.99M</span> of annual tax paid across UK-style 20% / 40% / 45% bands. A monthly salary fact table is joined to a staff master and a month calendar, with a calculated aggregate table pre-computing each employee's annual salary and banded tax paid. Two pages: a workforce overview (banding mix, salary spread, key influencers) and a per-employee running-total view showing when in the year an individual's pay crosses each tax threshold.</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>Source</h2></div>
+  <table>
+    <tr><th>Table</th><th>Format</th><th>Grain</th><th class="fit">Key(s)</th><th>Description</th></tr>
+    <tr>
+      <td class="mono">DIM_Staff</td>
+      <td>CSV import, 25 columns</td>
+      <td>1 row / employee</td>
+      <td class="fit mono">StaffID</td>
+      <td>Staff master — name, DOB, hire date, department, job title/level, manager, office/home country, tax region &amp; code, employment type, FTE, contract type, work pattern, student loan plan, pension sacrifice %.</td>
+    </tr>
+    <tr>
+      <td class="mono">Salaries Raw</td>
+      <td>CSV import, unpivoted from wide (13 cols)</td>
+      <td>1 row / employee / month</td>
+      <td class="fit mono">StaffID, Month</td>
+      <td>Monthly salary. Source file ships one column per month; unpivoted into long <code>Month</code> / <code>Salary</code> pairs.</td>
+    </tr>
+    <tr>
+      <td class="mono">DIM_Month</td>
+      <td>Derived (no file)</td>
+      <td>1 row / calendar month</td>
+      <td class="fit mono">Month</td>
+      <td>Distinct <code>Month</code> values lifted straight out of Salaries Raw — a calendar lookup, not a separate extract.</td>
+    </tr>
+    <tr>
+      <td class="mono">Salaries Aggregated</td>
+      <td>Calculated table (grouped)</td>
+      <td>1 row / employee</td>
+      <td class="fit mono">StaffID</td>
+      <td>Salaries Raw grouped by StaffID into annual/min/max/avg/median salary, then extended with DAX columns banding that salary into 20%/40%/45% tax paid.</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">03</span><h2>Transformations</h2></div>
+  <p class="lede">Power Query builds the three import tables; the aggregate table layers DAX tax-banding logic on top.</p>
+
+  <h3 class="sub">DIM_Staff</h3>
+  <div class="flow">
+    <div class="flow-step"><b>Type 25 cols</b><span>Promote headers, type StaffID/StaffSeq/ManagerID/PensionSacrificePct as Int64, dates as date, rest as text.</span></div>
+    <div class="flow-step"><b>Derive Job Level</b><span>Take the last character of <code>JobLevel</code> (e.g. "L7") and cast to Int64 as numeric <code>Job Level</code>.</span></div>
+    <div class="flow-step"><b>Add Age / Experience</b><span><code>Age</code> and <code>Years of Experience</code> = (today − DateOfBirth / HireDate), converted from a duration to years (days ÷ 365).</span></div>
+  </div>
+
+  <h3 class="sub">Salaries Raw</h3>
+  <div class="flow">
+    <div class="flow-step"><b>Unpivot months</b><span>Promote headers, then unpivot every column except <code>StaffID</code> into <code>Month</code> / <code>Salary</code> pairs.</span></div>
+    <div class="flow-step"><b>Rebuild date</b><span>Wrap the unpivoted month label as <code>1/&lt;n&gt;/2024</code> and parse to a proper date; type <code>Salary</code> as decimal.</span></div>
+  </div>
+
+  <h3 class="sub">Salaries Aggregated</h3>
+  <div class="flow">
+    <div class="flow-step"><b>Group by StaffID</b><span>Sum → Annual Salary; Max/Min/Average/Median → Maximum/Minimum/Average/Median Monthly Salary.</span></div>
+    <div class="flow-step"><b>Band the tax (DAX)</b><span>Tier Annual Salary against fixed thresholds £12,570 / £50,270 / £125,140 to get a max rate (0/20/40/45%), then tax each slice only above its own threshold.</span></div>
+  </div>
+
+  <details>
+    <summary>Show Power Query M (Salaries Raw)</summary>
+    <pre><code>let
+    Source = Csv.Document(File.Contents("PD 2024 Wk 6 Input.csv"),
+        [Delimiter=",", Columns=13, Encoding=1250, QuoteStyle=QuoteStyle.None]),
+    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+    #"Unpivoted Other Columns" = Table.UnpivotOtherColumns(#"Promoted Headers",
+        {"StaffID"}, "Month", "Salary"),
+    #"Changed Type" = Table.TransformColumnTypes(#"Unpivoted Other Columns", {{"Salary", type number}}),
+    #"Added Prefix" = Table.TransformColumns(#"Changed Type", {{"Month", each "1/" & _, type text}}),
+    #"Added Suffix" = Table.TransformColumns(#"Added Prefix", {{"Month", each _ & "/2024", type text}}),
+    #"Changed Type1" = Table.TransformColumnTypes(#"Added Suffix", {{"Month", type date}})
+in
+    #"Changed Type1"</code></pre>
+  </details>
+  <p style="font-size:13px" class="lede">Tax-banding and the running total are DAX, not Power Query — see <a href="#staff-dax">section 04</a>.</p>
+</section>
+
+<section id="staff-dax">
+  <div class="sec-head"><span class="sec-num">04</span><h2>DAX measures</h2></div>
+  <p class="lede">All tax-banding logic lives in calculated columns on <code>Salaries Aggregated</code>; the running total on page 2 is a measure on <code>Salaries Raw</code>.</p>
+  <table>
+    <tr><th>Name</th><th>Table</th><th class="fit">Type</th><th>Purpose</th></tr>
+    <tr><td class="mono">_20% / _40% / _45% Salary Value</td><td class="mono">Salaries Aggregated</td><td class="fit">Measure</td><td>Fixed UK band thresholds — £12,570 / £50,270 / £125,140 — referenced by every other formula below and plotted as the dashed lines on page 2.</td></tr>
+    <tr><td class="mono">_Maximum Tax Rate as Number</td><td class="mono">Salaries Aggregated</td><td class="fit">Calc. column</td><td>Tiers each employee's Annual Salary against the three thresholds to get their top marginal rate (0 / 0.2 / 0.4 / 0.45) — drives the slicer and the stacked bar's row grouping.</td></tr>
+    <tr><td class="mono">_Maximum Tax Rate</td><td class="mono">Salaries Aggregated</td><td class="fit">Calc. column</td><td>Text version of the rate above (e.g. "40% rate") used as the bar chart's legend/axis label.</td></tr>
+    <tr><td class="mono">_20% / _40% / _45% Tax Paid</td><td class="mono">Salaries Aggregated</td><td class="fit">Calc. columns</td><td>Tiered tax within each band — each only taxes the slice of salary above its own threshold, so they sum correctly instead of double-taxing.</td></tr>
+    <tr><td class="mono">_Annual Tax Paid</td><td class="mono">Salaries Aggregated</td><td class="fit">Calc. column</td><td>Sum of the three band amounts — feeds the "Sum of Tax Paid" KPI card.</td></tr>
+    <tr><td class="mono">Salary running total in Month</td><td class="mono">Salaries Raw</td><td class="fit">Measure</td><td>Cumulative SUM of Salary up to the selected Month (<code>ALLSELECTED</code> + <code>ISONORAFTER</code>) — the line plotted against the three thresholds on page 2.</td></tr>
+  </table>
+  <details>
+    <summary>Show full DAX</summary>
+    <pre><code>_20% Salary Value = 12570
+_40% Salary Value = 50270
+_45% Salary Value = 125140
+
+_Maximum Tax Rate as Number =
+    SWITCH( TRUE(),
+        [Annual Salary] <= [_20% Salary Value], 0,
+        [Annual Salary] <= [_40% Salary Value], 0.2,
+        [Annual Salary] <= [_45% Salary Value], 0.4,
+        0.45 )
+
+_Maximum Tax Rate =
+    CONVERT( [_Maximum Tax Rate as Number] * 100, STRING ) & "% rate"
+
+_20% Tax Paid = IF([_Maximum Tax Rate as Number] > 0,   0.2  * [Annual Salary], 0)
+_40% Tax Paid = IF([_Maximum Tax Rate as Number] > 0.2, 0.4  * ([Annual Salary] - [_20% Salary Value]), 0)
+_45% Tax Paid = IF([_Maximum Tax Rate as Number] > 0.4, 0.45 * ([Annual Salary] - ([_20% Salary Value] + [_40% Salary Value])), 0)
+
+_Annual Tax Paid = [_20% Tax Paid] + [_40% Tax Paid] + [_45% Tax Paid]
+
+Salary running total in Month =
+    CALCULATE(
+        SUM('Salaries Raw'[Salary]),
+        FILTER(
+            ALLSELECTED('Salaries Raw'[Month]),
+            ISONORAFTER('Salaries Raw'[Month], MAX('Salaries Raw'[Month]), DESC)
+        )
+    )</code></pre>
+  </details>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">05</span><h2>Data model</h2></div>
+  <p class="lede">One fact (Salaries Raw) feeding a calendar and a per-employee aggregate, which in turn ties back to the staff master — StaffID is the join key everywhere except the calendar link.</p>
+  <figure>
+    <img src="images/staff-model.png" alt="Power BI model view: Salaries Raw joined to DIM_Month on Month, to Salaries Aggregated on StaffID, and Salaries Aggregated joined one-to-one bidirectionally to DIM_Staff on StaffID">
+    <figcaption>Model view — Salaries Raw is the monthly fact; Salaries Aggregated is the per-employee bridge into DIM_Staff.</figcaption>
+  </figure>
+  <table>
+    <tr><th>From</th><th class="fit">Key</th><th></th><th>To</th><th class="fit">Key</th><th class="fit">Cardinality</th><th>Cross-filter</th></tr>
+    <tr><td class="mono">Salaries Raw</td><td class="fit mono">Month</td><td class="fit">→</td><td class="mono">DIM_Month</td><td class="fit mono">Month</td><td class="fit">*:1</td><td>Single</td></tr>
+    <tr><td class="mono">Salaries Raw</td><td class="fit mono">StaffID</td><td class="fit">→</td><td class="mono">Salaries Aggregated</td><td class="fit mono">StaffID</td><td class="fit">*:1</td><td>Single</td></tr>
+    <tr><td class="mono">Salaries Aggregated</td><td class="fit mono">StaffID</td><td class="fit">⇄</td><td class="mono">DIM_Staff</td><td class="fit mono">StaffID</td><td class="fit">1:1</td><td>Both</td></tr>
+  </table>
+  <p style="font-size:13px" class="lede">The Aggregated↔DIM_Staff link is the one deliberately bidirectional relationship in the model: it lets staff attributes (Department, JobLevel, JobTitle, OfficeCountry…) filter the pre-computed tax figures, and lets a tax-band selection filter back onto the staff list — both directions are used by the slicers on the report's first page.</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">06</span><h2>Report</h2></div>
+  <p class="lede">Two pages — a workforce overview and a per-employee drill-down.</p>
+
+  <h3 class="sub">Page 1 · Income Tax Data</h3>
+  <figure>
+    <img src="images/staff-overview.png" alt="Income Tax Data report page with slicers, KPI cards, a stacked bar by tax rate and job level, key influencers, a salary distribution box plot, and a detail table">
+    <figcaption>Filter rail left (7 slicers incl. a Maximum Tax Rate range); KPIs and key-influencers top right; salary spread and detail table below.</figcaption>
+  </figure>
+  <table>
+    <tr><th>Visual</th><th>Measure</th><th>Interpretation</th></tr>
+    <tr><td>KPI — Number of Employees</td><td>Distinct count of StaffID</td><td>Headcount in the current filter context (999 at page level).</td></tr>
+    <tr><td>KPI — Sum of Tax Paid</td><td>_Annual Tax Paid</td><td>Total tax collected across the workforce (£14.99M at page level).</td></tr>
+    <tr><td>Stacked bar — Count of StaffID by _Maximum Tax Rate &amp; JobLevel</td><td>Count of StaffID</td><td>Most of the workforce sits in the 20% and 40% bands; the 45% band is a thin slice, concentrated in the higher job levels (L5–L7) — the 0% band is almost empty, meaning very few staff earn under the personal allowance.</td></tr>
+    <tr><td>Key influencers — "What influences Annual Salary to increase"</td><td>Annual Salary</td><td>Job title is the dominant driver of pay: Station Manager (+£46.9K), Cabin Crew Manager (+£44.4K) and Cabin Service Lead (+£21.0K) each push the average salary up substantially — leadership/management titles carry the clearest premium.</td></tr>
+    <tr><td>Box plot — Salary Distribution by Job Level</td><td>Annual Salary (min/med/mean/max)</td><td>Spread widens sharply going up the ladder: L1–L3 cluster tightly at the low end, while L6–L7 show much higher medians and by far the widest range — consistent with senior/exec pay being individually negotiated rather than banded.</td></tr>
+    <tr><td>Detail table</td><td>Row-level salary &amp; tax by employee</td><td>Lets a viewer trace any KPI or chart back to the individual pay and tax figures behind it.</td></tr>
+  </table>
+
+  <h3 class="sub">Page 2 · Running Total per Employee</h3>
+  <figure>
+    <img src="images/staff-running-total.png" alt="Running Total per Employee report page with a Full Name search list on the left and a running-total line chart against three dashed tax-band threshold lines">
+    <figcaption>Full Name search list filters the whole page to one employee; the line chart plots their cumulative salary against the three band thresholds.</figcaption>
+  </figure>
+  <table>
+    <tr><th>Visual</th><th>Measure</th><th>Interpretation</th></tr>
+    <tr><td>Line — Salary running total in Month</td><td><code>Salary running total in Month</code> (cumulative SUM over Salaries Raw[Month])</td><td>A personal tax-band tracker: the running line shows cumulative pay through the year, read against the three dashed reference lines (_20%/_40%/_45% Salary Value = £12,570 / £50,270 / £125,140) to see in which month that individual's pay crosses into the next tax band.</td></tr>
+    <tr><td>Full Name slicer (search list)</td><td>—</td><td>Required to make the running total meaningful — the measure is cumulative per person, so the page is designed to be viewed one employee at a time rather than for the whole workforce at once.</td></tr>
+  </table>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">07</span><h2>Visual design</h2></div>
+  <p class="lede">No custom theme file — report uses Power BI's default theme and categorical palette, relied on mainly to colour-code the <code>JobLevel</code> series (L1–L7) consistently across the stacked bar and box plot.</p>
+</section>
+
+<footer>
+  <span>Power BI Reports — Technical Documentation</span>
+  <span class="badge">v1.0</span>
+</footer>
+
+</div>

@@ -1,0 +1,33 @@
+table DIM_Month
+	lineageTag: 6855e7ee-b673-44b5-a48c-f7ce364faf21
+
+	column Month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9ac6882d-a570-4e62-b4fa-156b7de5de20
+		summarizeBy: none
+		sourceColumn: Month
+
+		variation Variation
+			isDefault
+			relationship: f94711cd-56ea-4070-afb1-9304c80a0e3c
+			defaultHierarchy: LocalDateTable_99f6614d-f7b5-4ac6-a205-f445af1fb45e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition DIM_Month = m
+		mode: import
+		source =
+				let
+				    Source = #"Salaries Raw",
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Month"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,215 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "e17e95fce9e077a36d02",
+  "position": {
+    "x": 781.70075153723531,
+    "y": 132.46003188339785,
+    "z": 2002,
+    "height": 400,
+    "width": 550,
+    "tabOrder": 2002
+  },
+  "visual": {
+    "visualType": "keyDriversVisual",
+    "query": {
+      "queryState": {
+        "ExplainBy": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "Gender"
+                }
+              },
+              "queryRef": "dim_staff.Gender",
+              "nativeQueryRef": "Gender"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "Years of Experience"
+                }
+              },
+              "queryRef": "Sum(dim_staff.Years of Experience)",
+              "nativeQueryRef": "Years of Experience"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "Job Level"
+                }
+              },
+              "queryRef": "Sum(dim_staff.Job Level)",
+              "nativeQueryRef": "Job Level"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "JobTitle"
+                }
+              },
+              "queryRef": "dim_staff.JobTitle",
+              "nativeQueryRef": "JobTitle"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "Age"
+                }
+              },
+              "queryRef": "Sum(dim_staff.Age)",
+              "nativeQueryRef": "Age"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "ContractType"
+                }
+              },
+              "queryRef": "dim_staff.ContractType",
+              "nativeQueryRef": "ContractType"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "Department"
+                }
+              },
+              "queryRef": "dim_staff.Department",
+              "nativeQueryRef": "Department"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "EmploymentType"
+                }
+              },
+              "queryRef": "dim_staff.EmploymentType",
+              "nativeQueryRef": "EmploymentType"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "WorkPattern"
+                }
+              },
+              "queryRef": "dim_staff.WorkPattern",
+              "nativeQueryRef": "WorkPattern"
+            }
+          ]
+        },
+        "Target": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Salaries Aggregated"
+                    }
+                  },
+                  "Property": "Annual Salary"
+                }
+              },
+              "queryRef": "Salaries Aggregated.Annual Salary",
+              "nativeQueryRef": "Annual Salary"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DIM_Staff"
+                  }
+                },
+                "Property": "Gender"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "keyDrivers": [
+        {
+          "properties": {
+            "targetValue": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''40% rate'''"
+                }
+              }
+            },
+            "numericTargetSelectedKind": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "selectedAnalysis": {
+              "expr": {
+                "Literal": {
+                  "Value": "'keyInfluencers'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

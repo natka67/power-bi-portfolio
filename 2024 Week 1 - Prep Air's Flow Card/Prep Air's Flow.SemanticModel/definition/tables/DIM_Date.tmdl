@@ -1,0 +1,33 @@
+table DIM_Date
+	lineageTag: 3a5984cc-ca83-4bb1-8d95-2144c3ba4be0
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0a523938-d647-4c9c-850e-4b3bea0e5484
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: f4a68eba-2862-4e0b-bbb4-b2c147049150
+			defaultHierarchy: LocalDateTable_d8d8a71d-ff70-4f2c-929e-56f2267fd612.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition DIM_Date = m
+		mode: import
+		source =
+				let
+				    Source = #"Prep Air's Flow Card",
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Date"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

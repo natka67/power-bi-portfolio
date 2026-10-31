@@ -1,0 +1,100 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 1510.2857666015625,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1988,
+            "y": 0
+          },
+          "nodeIndex": "Prep Air's Flow Card",
+          "nodeLineageTag": "9a24baa7-30ab-4f12-8e00-7ed027a7266f",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 96
+          },
+          "nodeIndex": "DIM_Class",
+          "nodeLineageTag": "674dd521-4e2e-4d29-9bf4-569cc685066a",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 284,
+            "y": 96
+          },
+          "nodeIndex": "DIM_Date",
+          "nodeLineageTag": "3a5984cc-ca83-4bb1-8d95-2144c3ba4be0",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 568,
+            "y": 96
+          },
+          "nodeIndex": "DIM_From",
+          "nodeLineageTag": "459b2841-8661-42a0-918f-3f4fd42cac01",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 852,
+            "y": 96
+          },
+          "nodeIndex": "DIM_Meal Type",
+          "nodeLineageTag": "5c288609-ffca-476f-9075-ea56f0a7f553",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1136,
+            "y": 96
+          },
+          "nodeIndex": "DIM_To",
+          "nodeLineageTag": "0e623bbb-fa03-401a-ad9a-9af1e1503b98",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

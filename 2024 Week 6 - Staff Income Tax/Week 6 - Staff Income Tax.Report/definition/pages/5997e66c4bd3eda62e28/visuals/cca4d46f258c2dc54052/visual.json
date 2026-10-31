@@ -1,0 +1,437 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "cca4d46f258c2dc54052",
+  "position": {
+    "x": 212.68230471418812,
+    "y": 539.16829879298564,
+    "z": 0,
+    "height": 516.7806877704395,
+    "width": 1688.3989979503531,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "FullName"
+                }
+              },
+              "queryRef": "dim_staff.FullName",
+              "nativeQueryRef": "FullName"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "EmploymentType"
+                }
+              },
+              "queryRef": "dim_staff.EmploymentType",
+              "nativeQueryRef": "EmploymentType"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "Department"
+                }
+              },
+              "queryRef": "dim_staff.Department",
+              "nativeQueryRef": "Department"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "JobLevel"
+                }
+              },
+              "queryRef": "dim_staff.JobLevel",
+              "nativeQueryRef": "JobLevel"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "JobTitle"
+                }
+              },
+              "queryRef": "dim_staff.JobTitle",
+              "nativeQueryRef": "JobTitle"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "Years of Experience"
+                }
+              },
+              "queryRef": "Sum(dim_staff.Years of Experience)",
+              "nativeQueryRef": "Years of Experience"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "PensionSacrificePct"
+                }
+              },
+              "queryRef": "Sum(dim_staff.PensionSacrificePct)",
+              "nativeQueryRef": "PensionSacrificePct"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_Staff"
+                    }
+                  },
+                  "Property": "StudentLoanPlan"
+                }
+              },
+              "queryRef": "dim_staff.StudentLoanPlan",
+              "nativeQueryRef": "StudentLoanPlan"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Salaries Aggregated"
+                    }
+                  },
+                  "Property": "Annual Salary"
+                }
+              },
+              "queryRef": "Salaries Aggregated.Annual Salary",
+              "nativeQueryRef": "Annual Salary"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Salaries Aggregated"
+                    }
+                  },
+                  "Property": "_Maximum Tax Rate"
+                }
+              },
+              "queryRef": "Salaries Aggregated.Maximum Tax Rate",
+              "nativeQueryRef": "_Maximum Tax Rate"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Salaries Aggregated"
+                    }
+                  },
+                  "Property": "_20% Tax Paid"
+                }
+              },
+              "queryRef": "Salaries Aggregated._20% Tax Rate",
+              "nativeQueryRef": "_20% Tax Paid"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Salaries Aggregated"
+                    }
+                  },
+                  "Property": "_40% Tax Paid"
+                }
+              },
+              "queryRef": "Salaries Aggregated._40% tax rate",
+              "nativeQueryRef": "_40% Tax Paid"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Salaries Aggregated"
+                    }
+                  },
+                  "Property": "_45% Tax Paid"
+                }
+              },
+              "queryRef": "Salaries Aggregated._45% Tax Rate",
+              "nativeQueryRef": "_45% Tax Paid"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Salaries Aggregated"
+                    }
+                  },
+                  "Property": "_Annual Tax Paid"
+                }
+              },
+              "queryRef": "Salaries Aggregated.Annual Tax Paid",
+              "nativeQueryRef": "_Annual Tax Paid"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Salaries Aggregated"
+                  }
+                },
+                "Property": "_Maximum Tax Rate"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "6f085daa07ebde8c277e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Salaries Aggregated"
+              }
+            },
+            "Property": "Annual Salary"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1a03f8e0da18110866ba",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Salaries Aggregated"
+              }
+            },
+            "Property": "_Maximum Tax Rate"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "fcd95610e30404088930",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Salaries Aggregated"
+              }
+            },
+            "Property": "_20% Tax Paid"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6eae55e70a092d93758d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Salaries Aggregated"
+              }
+            },
+            "Property": "_40% Tax Paid"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c15ed1a174ec06c04d50",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Salaries Aggregated"
+              }
+            },
+            "Property": "_45% Tax Paid"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "13aa5af290c81d406456",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Salaries Aggregated"
+              }
+            },
+            "Property": "_Annual Tax Paid"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "9a8bb2dd9cc1d4c9c848",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_Staff"
+              }
+            },
+            "Property": "EmploymentType"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c9b5a4d415d9eb8c7859",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_Staff"
+              }
+            },
+            "Property": "FullName"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "68807ca8a1cbe7621040",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_Staff"
+              }
+            },
+            "Property": "Department"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "831086800a14118cd891",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_Staff"
+              }
+            },
+            "Property": "JobLevel"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "650c0703698889e0a685",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_Staff"
+              }
+            },
+            "Property": "JobTitle"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "23110da22857a62d0dd8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_Staff"
+              }
+            },
+            "Property": "Years of Experience"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6f569fe8720aade28048",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_Staff"
+              }
+            },
+            "Property": "PensionSacrificePct"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4bbb873c22cb8a480382",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_Staff"
+              }
+            },
+            "Property": "StudentLoanPlan"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+relationship f4a68eba-2862-4e0b-bbb4-b2c147049150
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_Date.Date
+	toColumn: LocalDateTable_d8d8a71d-ff70-4f2c-929e-56f2267fd612.Date
+
+relationship AutoDetected_94577cf1-29bc-4889-9d77-a1f8bda05f32
+	fromColumn: 'Prep Air''s Flow Card'.From
+	toColumn: DIM_From.From
+
+relationship AutoDetected_a6392776-a734-4666-be4e-4628a9ebcc46
+	fromColumn: 'Prep Air''s Flow Card'.To
+	toColumn: DIM_To.To
+
+relationship AutoDetected_a932966d-bdd7-41c1-a243-d95b46971e84
+	fromColumn: 'Prep Air''s Flow Card'.Class
+	toColumn: DIM_Class.Class
+
+relationship AutoDetected_9fb73455-074e-427e-ad24-fe291ac2304c
+	fromColumn: 'Prep Air''s Flow Card'.'Meal Type'
+	toColumn: 'DIM_Meal Type'.'Meal Type'
+
+relationship 1975803b-db71-4b46-bec6-a7d04f74ff77
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Prep Air''s Flow Card'.Date
+	toColumn: LocalDateTable_129d5b0e-3a71-466d-af50-9034136c5099.Date
+

@@ -1,0 +1,272 @@
+table DIM_Staff
+	lineageTag: 0f4c3b5e-e667-40c9-ba1a-e9c0464f8e53
+
+	column StaffID
+		dataType: int64
+		formatString: 0
+		lineageTag: 49b1af39-8152-4a35-98f2-68a65b3d7e04
+		summarizeBy: none
+		sourceColumn: StaffID
+
+		annotation SummarizationSetBy = Automatic
+
+	column StaffSeq
+		dataType: int64
+		formatString: 0
+		lineageTag: b661a525-ce70-437b-ad5b-079f844b3492
+		summarizeBy: sum
+		sourceColumn: StaffSeq
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstName
+		dataType: string
+		lineageTag: 3ccd0919-5082-4a90-8369-b8357f4a912a
+		summarizeBy: none
+		sourceColumn: FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastName
+		dataType: string
+		lineageTag: f7622d57-2403-4b31-b666-4fded13d8dc7
+		summarizeBy: none
+		sourceColumn: LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullName
+		dataType: string
+		lineageTag: 581a38ab-2cc3-4478-b661-aea968757168
+		summarizeBy: none
+		sourceColumn: FullName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: cf6c9698-fda2-414f-9d35-dbcd14ad2e40
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 983bfacc-7f6e-4484-a174-286d7521ddba
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateOfBirth
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c4a066b7-eb9e-4aa2-81b6-f1fd7c02c5a9
+		summarizeBy: none
+		sourceColumn: DateOfBirth
+
+		variation Variation
+			isDefault
+			relationship: 05511daa-4086-48e0-8780-83a50f1c81d7
+			defaultHierarchy: LocalDateTable_80e9f817-ffe1-4903-a839-7cd3814e699b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column HireDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1782ba7f-9cb4-456f-9070-a6f3421c600c
+		summarizeBy: none
+		sourceColumn: HireDate
+
+		variation Variation
+			isDefault
+			relationship: 3235ba63-e799-440f-80c0-45d99f00446b
+			defaultHierarchy: LocalDateTable_61d5357f-b024-48fe-8bae-31f1e05c2f08.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Department
+		dataType: string
+		lineageTag: 2ba47173-dedc-4da4-b1e9-716bf9f91ee6
+		summarizeBy: none
+		sourceColumn: Department
+
+		annotation SummarizationSetBy = Automatic
+
+	column JobTitle
+		dataType: string
+		lineageTag: e8007b42-12cc-4a17-899e-f359c54d1477
+		summarizeBy: none
+		sourceColumn: JobTitle
+
+		annotation SummarizationSetBy = Automatic
+
+	column JobLevel
+		dataType: string
+		lineageTag: ecac7521-3ad3-4506-bc2b-09251a41d83c
+		summarizeBy: none
+		sourceColumn: JobLevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column ManagerID
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d217e5f-66f9-488d-8510-9f2964447a4b
+		summarizeBy: count
+		sourceColumn: ManagerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Office
+		dataType: string
+		lineageTag: f4356bc0-0eeb-4783-b6ae-480114887fe9
+		summarizeBy: none
+		sourceColumn: Office
+
+		annotation SummarizationSetBy = Automatic
+
+	column OfficeCountry
+		dataType: string
+		lineageTag: 4a7e620f-dca1-42c0-b023-f8146446ee9a
+		summarizeBy: none
+		sourceColumn: OfficeCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column HomeCountry
+		dataType: string
+		lineageTag: 8faf6575-1be9-487b-b317-380e462492a0
+		summarizeBy: none
+		sourceColumn: HomeCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column TaxRegion
+		dataType: string
+		lineageTag: 17b61558-c8b5-46e1-8baa-6430b7bcd188
+		summarizeBy: none
+		sourceColumn: TaxRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column TaxCode
+		dataType: string
+		lineageTag: 4e0e4d93-af3d-426a-8091-e6958ae2ebe3
+		summarizeBy: none
+		sourceColumn: TaxCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmploymentType
+		dataType: string
+		lineageTag: b277bb1c-0be5-4415-97b6-697b2c596ed1
+		summarizeBy: none
+		sourceColumn: EmploymentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column FTE
+		dataType: string
+		lineageTag: 97e06b11-8781-49b1-9896-97dec529944d
+		summarizeBy: none
+		sourceColumn: FTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContractType
+		dataType: string
+		lineageTag: e67a4429-2329-4520-b30e-fe6d05078b51
+		summarizeBy: none
+		sourceColumn: ContractType
+
+		annotation SummarizationSetBy = Automatic
+
+	column WorkPattern
+		dataType: string
+		lineageTag: fd67f95e-c4e6-46db-8aad-46f57a22b0ef
+		summarizeBy: none
+		sourceColumn: WorkPattern
+
+		annotation SummarizationSetBy = Automatic
+
+	column StudentLoanPlan
+		dataType: string
+		lineageTag: 790c734a-ab06-4ce3-ae72-29771b2ecf12
+		summarizeBy: none
+		sourceColumn: StudentLoanPlan
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostgradLoan
+		dataType: string
+		lineageTag: 803c36d4-4354-4cf9-8d13-5ad36b198186
+		summarizeBy: none
+		sourceColumn: PostgradLoan
+
+		annotation SummarizationSetBy = Automatic
+
+	column PensionSacrificePct
+		dataType: int64
+		formatString: 0
+		lineageTag: 73afdb76-4ffa-4129-9240-1939ee71e232
+		summarizeBy: sum
+		sourceColumn: PensionSacrificePct
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Job Level'
+		dataType: int64
+		formatString: 0
+		lineageTag: 26a99045-4d8c-4f69-8beb-2e365b8561f8
+		summarizeBy: sum
+		sourceColumn: Job Level
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: double
+		lineageTag: 8cb067bd-6d00-49a8-89d7-0a7d12af53e5
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Years of Experience'
+		dataType: double
+		lineageTag: 6921d23c-99d1-4fba-b551-4f79ee96150a
+		summarizeBy: sum
+		sourceColumn: Years of Experience
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_Staff = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\meenie\Desktop\Power BI Reports\2024 Week 6 - Staff Income Tax\dim_staff.csv"),[Delimiter=",", Columns=25, Encoding=1250, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"StaffID", Int64.Type}, {"StaffSeq", Int64.Type}, {"FirstName", type text}, {"LastName", type text}, {"FullName", type text}, {"Email", type text}, {"Gender", type text}, {"DateOfBirth", type date}, {"HireDate", type date}, {"Department", type text}, {"JobTitle", type text}, {"JobLevel", type text}, {"ManagerID", Int64.Type}, {"Office", type text}, {"OfficeCountry", type text}, {"HomeCountry", type text}, {"TaxRegion", type text}, {"TaxCode", type text}, {"EmploymentType", type text}, {"FTE", type text}, {"ContractType", type text}, {"WorkPattern", type text}, {"StudentLoanPlan", type text}, {"PostgradLoan", type text}, {"PensionSacrificePct", Int64.Type}}),
+				    #"Inserted Last Characters" = Table.AddColumn(#"Changed Type", "Last Characters", each Text.End([JobLevel], 1), type text),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Inserted Last Characters",{{"Last Characters", Int64.Type}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"Last Characters", "Job Level"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Age", each  Date.From(DateTime.LocalNow()) - [DateOfBirth], type duration),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Years of Experience", each Date.From(DateTime.LocalNow()) - [HireDate], type duration),
+				    #"Calculated Total Years" = Table.TransformColumns(#"Added Custom1",{{"Age", each Duration.TotalDays(_) / 365, type number}, {"Years of Experience", each Duration.TotalDays(_) / 365, type number}})
+				in
+				    #"Calculated Total Years"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,194 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "15d850ab8d5b8e485d0e",
+  "position": {
+    "x": 1041.6666666666667,
+    "y": 128.33333333333334,
+    "z": 0,
+    "height": 928.33333333333337,
+    "width": 851.66666666666674,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Prep Air's Flow Card"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "Prep Air's Flow Card.Date",
+              "nativeQueryRef": "Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Prep Air's Flow Card"
+                    }
+                  },
+                  "Property": "Route"
+                }
+              },
+              "queryRef": "Prep Air's Flow Card.Route",
+              "nativeQueryRef": "Route"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Prep Air's Flow Card"
+                    }
+                  },
+                  "Property": "Flow Card?"
+                }
+              },
+              "queryRef": "Prep Air's Flow Card.Flow Card?",
+              "nativeQueryRef": "Flow Card?"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Prep Air's Flow Card"
+                        }
+                      },
+                      "Property": "Bags Checked"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Prep Air's Flow Card.Bags Checked)",
+              "nativeQueryRef": "Sum of Bags Checked"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Prep Air's Flow Card"
+                    }
+                  },
+                  "Property": "Class"
+                }
+              },
+              "queryRef": "Prep Air's Flow Card.Class",
+              "nativeQueryRef": "Class"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Prep Air's Flow Card"
+                    }
+                  },
+                  "Property": "Flight Number"
+                }
+              },
+              "queryRef": "Prep Air's Flow Card.Flight Number",
+              "nativeQueryRef": "Flight Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Prep Air's Flow Card"
+                    }
+                  },
+                  "Property": "Meal Type"
+                }
+              },
+              "queryRef": "Prep Air's Flow Card.Meal Type",
+              "nativeQueryRef": "Meal Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Prep Air's Flow Card"
+                    }
+                  },
+                  "Property": "Price"
+                }
+              },
+              "queryRef": "Sum(Prep Air's Flow Card.Price)",
+              "nativeQueryRef": "Price"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Prep Air's Flow Card"
+                  }
+                },
+                "Property": "Flight Number"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "117.99999880323232D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Prep Air's Flow Card.Date"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

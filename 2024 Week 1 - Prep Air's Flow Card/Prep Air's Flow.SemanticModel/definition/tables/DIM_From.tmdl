@@ -1,0 +1,25 @@
+table DIM_From
+	lineageTag: 459b2841-8661-42a0-918f-3f4fd42cac01
+
+	column From
+		dataType: string
+		lineageTag: 55f7fb34-2f24-47a7-b5d2-fee821525003
+		summarizeBy: none
+		sourceColumn: From
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_From = m
+		mode: import
+		source =
+				let
+				    Source = #"Prep Air's Flow Card",
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"From"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

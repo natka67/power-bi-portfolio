@@ -1,0 +1,26 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Salaries Raw","DIM_Month","Salaries Aggregated","DIM_Staff"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'Salaries Raw'
+ref table DIM_Month
+ref table 'Salaries Aggregated'
+ref table DIM_Staff
+ref table DateTableTemplate_9a4229b8-453c-46f9-b17c-dbb35fa02062
+ref table LocalDateTable_80e9f817-ffe1-4903-a839-7cd3814e699b
+ref table LocalDateTable_61d5357f-b024-48fe-8bae-31f1e05c2f08
+ref table LocalDateTable_99f6614d-f7b5-4ac6-a205-f445af1fb45e
+
+ref cultureInfo en-US
+

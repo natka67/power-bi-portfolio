@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Prep Air's Flow"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "9f070092-c316-4444-a001-2c83c2c334c1"
+  }
+}

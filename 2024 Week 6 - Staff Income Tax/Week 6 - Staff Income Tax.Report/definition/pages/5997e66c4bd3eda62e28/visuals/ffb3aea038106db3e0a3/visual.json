@@ -1,0 +1,85 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "ffb3aea038106db3e0a3",
+  "position": {
+    "x": 1350.7191983602825,
+    "y": 31.715782281940331,
+    "z": 2005,
+    "height": 83.953541334547936,
+    "width": 255.5918925074015,
+    "tabOrder": 2005
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Salaries Aggregated"
+                        }
+                      },
+                      "Property": "StaffID"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "Min(Salaries Aggregated.StaffID)",
+              "nativeQueryRef": "Number of Employees",
+              "displayName": "Number of Employees"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Salaries Aggregated"
+                      }
+                    },
+                    "Property": "StaffID"
+                  }
+                },
+                "Function": 2
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
